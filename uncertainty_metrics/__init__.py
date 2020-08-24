@@ -21,7 +21,7 @@ try:
   from uncertainty_metrics import numpy
   __all__ = ["numpy"]
 except ImportError:
-  __all__ = []
+  __all__ = list()
   warnings.warn("NumPy backend for Uncertainty Merics is not available.")
 
 try:
