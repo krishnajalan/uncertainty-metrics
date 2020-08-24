@@ -91,8 +91,8 @@ def plot_diagram(probs, labels, y_axis='accuracy'):
   return fig
 
 
-def reliability_diagram(probs,
-                        labels,
+def reliability_diagram(labels,
+                        probs,
                         class_conditional=False,
                         y_axis='accuracy',
                         img=False):
@@ -103,8 +103,8 @@ def reliability_diagram(probs,
     exclusive bins.
 
   Args:
-    probs: probability matrix out of a softmax.
     labels: label vector.
+    probs: probability matrix out of a softmax.
     class_conditional: whether to visualize every class independently, or
       conflate classes.
     y_axis: takes 'accuracy or 'error'. Set y_axis to 'error' to graph the
@@ -116,7 +116,7 @@ def reliability_diagram(probs,
 
   probs = np.array(probs)
   labels = np.array(labels)
-  labels_matrix = one_hot_encode(labels)
+  labels_matrix = one_hot_encode(labels, probs.shape[1])
   if class_conditional:
     for class_index in range(probs.shape[1]):
       if img:
